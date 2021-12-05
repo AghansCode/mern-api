@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const productRoutes = require("./src/routes/products");
+const authRoutes = require("./src/routes/auth");
 
 //MIDLLEWARE
 app.use(bodyParser.json()); //type JSON
@@ -16,6 +17,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/v1/customer", productRoutes);
-// GET '/users' ==> [{name: ghanis}]
+
+//API FOR MERN BLOG
+app.use("/v1/auth", authRoutes);
 
 app.listen(4000);
