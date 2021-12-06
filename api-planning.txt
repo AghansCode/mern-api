@@ -14,7 +14,7 @@ Standar Status response
 500 -- INTERNAL SERVER ERROR---> Error on Server Side
 502 -- BAD GATEWAY          ---> Invalid Response From Another Request
 
-
+===========================================================================================
 GROUP: Authentification
 
 [1] - Register
@@ -66,16 +66,13 @@ err-response:
 200 -> Login Berhasil
 400 -> Input yang anda masukan tidak valid
 
-
-
-
-
+==================================================================
 
 
 GROUP: BLOG
 
 [1] - Create Blog Post
-[POST] : {root.api}/{version}/blog/Post
+[POST] : {root.api}/{version}/blog/post
 
 req:
 {
