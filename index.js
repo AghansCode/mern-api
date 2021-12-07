@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const app = express();
 const authRoutes = require("./src/routes/auth");
@@ -27,4 +28,11 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message, data: data });
 });
 
-app.listen(4000);
+mongoose
+  .connect(
+    "mongodb://Ganisade:Srimulyati23@cluster0-shard-00-00.ilibt.mongodb.net:27017,cluster0-shard-00-01.ilibt.mongodb.net:27017,cluster0-shard-00-02.ilibt.mongodb.net:27017/blog?ssl=true&replicaSet=atlas-5v60ue-shard-0&authSource=admin&retryWrites=true&w=majority"
+  )
+  .then(() => {
+    app.listen(4000, () => console.log("Connection success"));
+  })
+  .catch((err) => console.log(err));
