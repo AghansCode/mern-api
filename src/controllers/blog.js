@@ -131,7 +131,7 @@ exports.deleteBlogPost = (req, res, next) => {
       }
 
       removeImage(post.image);
-      BlogPost.findByIdAndRemove(postId);
+      return BlogPost.findByIdAndRemove(postId);
     })
     .then((result) => {
       res.status(200).json({
