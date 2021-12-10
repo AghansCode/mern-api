@@ -1,5 +1,7 @@
 const { validationResult } = require("express-validator");
 const BlogPost = require("../models/blog");
+const path = require("path");
+const fs = require("fs");
 
 exports.createBlogPost = (req, res, next) => {
   const errors = validationResult(req);
@@ -127,10 +129,14 @@ exports.deleteBlogPost = (req, res, next) => {
         error.errorStatus = 404;
         throw error;
       }
+
       removeImage(post.image);
+      BlogPost.findByIdAndRemove(postId);
+    })
+    .then((result) => {
       res.status(200).json({
         message: "Delete Blog Post Success",
-        data: {},
+        data: result,
       });
     })
     .catch((err) => {
@@ -140,4 +146,8 @@ exports.deleteBlogPost = (req, res, next) => {
 
 const removeImage = (filePath) => {
   console.log("filePath", filePath);
+  console.log("dir name : ", __dirname);
+
+  filePath = path.join(__dirname, "../..", filePath);
+  fs.unlink(filePath, (err) => console.log(err));
 };
