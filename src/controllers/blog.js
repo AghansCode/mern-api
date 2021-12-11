@@ -129,7 +129,7 @@ exports.deleteBlogPost = (req, res, next) => {
         error.errorStatus = 404;
         throw error;
       }
-
+      // console.log(post.image);
       removeImage(post.image);
       return BlogPost.findByIdAndRemove(postId);
     })
@@ -146,8 +146,9 @@ exports.deleteBlogPost = (req, res, next) => {
 
 const removeImage = (filePath) => {
   console.log("filePath", filePath);
-  console.log("dir name : ", __dirname);
+  // console.log("dir name : ", __dirname);
 
   filePath = path.join(__dirname, "../..", filePath);
+  // console.log(filePath);
   fs.unlink(filePath, (err) => console.log(err));
 };
