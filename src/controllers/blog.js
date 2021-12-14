@@ -45,7 +45,7 @@ exports.createBlogPost = (req, res, next) => {
 
 exports.getAllBlogPost = (req, res, next) => {
   const currentPage = req.query.page || 1;
-  const perPage = req.query.perPage || 5;
+  const perPage = req.query.perPage || 4;
   let totalItems;
 
   BlogPost.find()
